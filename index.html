@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f8ff;
+      color: #333;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .dark-mode {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.3);
+      padding: 15px;
+      margin: 15px auto;
+      border-radius: 10px;
+      max-width: 320px;
+      border: 1px solid #ccc;
+    }
+    input {
+      padding: 8px;
+      font-size: 15px;
+      margin: 5px;
+      width: 80%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 15px;
+      border-radius: 5px;
+      margin: 3px;
+      cursor: pointer;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <h1>Akash Ka Pro Web Page</h1>
+
+  <div class="card">
+    <h3>1. Welcome Message</h3>
+    <input type="text" id="nameInput" placeholder="Apna Naam Likhein...">
+    <button onclick="showMessage()">Submit</button>
+  </div>
+
+  <div class="card">
+    <h3>2. Smart Calculator</h3>
+    <input type="number" id="num1" placeholder="Pehla Number">
+    <input type="number" id="num2" placeholder="Dusra Number">
+    <br>
+    <button onclick="calc('+')">+</button>
+    <button onclick="calc('-')">-</button>
+    <button onclick="calc('*')">×</button>
+    <button onclick="calc('/')">÷</button>
+    <p id="calcResult">Result: 0</p>
+  </div>
+
+  <div class="card">
+    <h3>3. Photo Gallery</h3>
+    <p style="font-size: 12px;">(Photo par click karke dekhein)</p>
+    <img src="https://picsum.photos/200/200?random=1" onclick="openPhoto(this.src)">
+    <img src="https://picsum.photos/200/200?random=2" onclick="openPhoto(this.src)">
+  </div>
+
+  <script>
+    function showMessage() {
+      let name = document.getElementById("nameInput").value;
+      if (name === "") alert("Kripya apna naam likhein!");
+      else alert("Hello " + name + "! Aapka swagat hai 🎉");
+    }
+
+    function calc(op) {
+      let n1 = parseFloat(document.getElementById("num1").value);
+      let n2 = parseFloat(document.getElementById("num2").value);
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById("calcResult").innerText = "Sahi number dalein!";
+        return;
+      }
+      let res = 0;
+      if (op === '+') res = n1 + n2;
+      if (op === '-') res = n1 - n2;
+      if (op === '*') res = n1 * n2;
+      if (op === '/') res = n1 / n2;
+      document.getElementById("calcResult").innerText = "Result: " + res;
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function openPhoto(src) {
+      window.open(src, '_blank');
+    }
+  </script>
+
+</body>
+</html>
